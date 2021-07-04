@@ -85,7 +85,7 @@ public:
      * @param line line# (0 for upper, 1 for lower)
      * @param format following parameters are compatible to stdout's printf
      */
-    void printf( char line, char *format, ... );
+    void printf( int line, char *format, ... );
 
     /** Printf
      *
@@ -99,21 +99,21 @@ public:
      * @param y Y vertical character position on the LCD
      * @param format following parameters are compatible to stdout's printf
      */
-    void printf( char x, char y, char *format, ... );
+    void printf( int x, int y, char *format, ... );
     
     /** Put character : "putc()"
      *
      * @param line line# (0 for upper, 1 for lower)
      * @param c character code
      */
-    void putc( char line, char c );
+    void putc( int line, char c );
 
     /** Put string : "puts()"
      *
      * @param line line# (0 for upper, 1 for lower)
      * @param s pointer to a string data
      */
-    void puts( char line, char *s );
+    void puts( int line, char *s );
 
     /** Put character into specified screen position
      *
@@ -121,7 +121,7 @@ public:
      * @param x horizontal character position on the LCD
      * @param y vertical character position on the LCD
      */
-    void putcxy( char c, char x, char y );
+    void putcxy( char c, int x, int y );
 
     /** Clear the LCD
      */
@@ -140,7 +140,7 @@ public:
      * @param x horizontal character position on the LCD
      * @param y vertical character position on the LCD
      */
-    void put_custom_char( char c_code, const char *cg, char x, char y );
+    void put_custom_char( char c_code, const char *cg, int x, int y );
 
     /** Set CGRAM (set custom bitmap as a character)
      *
@@ -171,7 +171,7 @@ public:
 private:
     char    curs[2];
     void    init( char *init_massage );
-    void    clear_lest_of_line( char line );
+    void    clear_lest_of_line( int line );
     int     lcd_write( char first, char second );
     int     lcd_command( char command );
     int     lcd_data( char data );

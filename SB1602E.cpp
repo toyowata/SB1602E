@@ -93,7 +93,7 @@ void SB1602E::init( char *init_massage )
     }
 }
 
-void SB1602E::printf( char line, char *format, ... )
+void SB1602E::printf( int line, char *format, ... )
 {
     char    s[ 32 ];
     va_list args;
@@ -105,7 +105,7 @@ void SB1602E::printf( char line, char *format, ... )
     puts( line, s );
 }
 
-void SB1602E::printf( char x, char y, char *format, ... )
+void SB1602E::printf( int x, int y, char *format, ... )
 {
     char    s[ 32 ];
     va_list args;
@@ -118,7 +118,7 @@ void SB1602E::printf( char x, char y, char *format, ... )
     puts( y, s );
 }
 
-void SB1602E::putc( char line, char c )
+void SB1602E::putc( int line, char c )
 {
     if ( (c == '\n') || (c == '\r') ) {
         clear_lest_of_line( line );
@@ -129,13 +129,13 @@ void SB1602E::putc( char line, char c )
     putcxy( c, curs[ line ]++, line );
 }
 
-void SB1602E::puts( char line, char *s )
+void SB1602E::puts( int line, char *s )
 {
     while ( char c    = *s++ )
         putc( line, c );
 }
 
-void SB1602E::putcxy( char c, char x, char y )
+void SB1602E::putcxy( char c, int x, int y )
 {
     const char    Comm_SetDDRAMAddress        = 0x80;
     const char    DDRAMAddress_Ofst[]         = { 0x00, 0x40 };
@@ -163,7 +163,7 @@ void SB1602E::contrast( char contrast )
     lcd_command( Comm_FunctionSet_Normal   );
 }
 
-void SB1602E::put_custom_char( char c_code, const char *cg, char x, char y )
+void SB1602E::put_custom_char( char c_code, const char *cg, int x, int y )
 {
     for ( int i = 0; i < 5; i++ ) {
         set_CGRAM( c_code, cg );
@@ -189,7 +189,7 @@ void SB1602E::set_CGRAM( char char_code, char v )
     set_CGRAM( char_code, c );
 }
 
-void SB1602E::clear_lest_of_line( char line )
+void SB1602E::clear_lest_of_line( int line )
 {
     for ( int i = curs[ line ]; i < charsInLine; i++ )
         putcxy( ' ', i, line );
