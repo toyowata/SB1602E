@@ -12,4 +12,3 @@ target_sources(SB1602E
     INTERFACE
     SB1602E.cpp
 )
-

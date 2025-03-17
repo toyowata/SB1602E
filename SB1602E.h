@@ -23,6 +23,9 @@
  *                                b. re-written for better usability
  *    revision 2.1  07-Apl-2015   a. add printf() with X and Y position
  *                                b. add setter for number of chars in a line (e.g. 8x2 LCD support)
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
  */
 
 #ifndef        MBED_SB1602E
@@ -42,9 +45,9 @@
  *  @code
  *  #include "mbed.h"
  *  #include "SB1602E.h"
- *  
+ *
  *  SB1602E lcd(  p9, p10 );  //  SDA, SCL
- *  
+ *
  *  int main() {
  *      lcd.printf( 0, "Hello world!" );    //  line# (0 or 1), string
  *      lcd.printf( 1, "pi = %.6f", 3.14159265 );
@@ -69,14 +72,14 @@ public:
      * @param init_massage string to initialize the LCD
      */
     SB1602E( I2C &i2c_, char *init_massage = NULL );
-    
+
     /** Destractor
      */
     ~SB1602E();
 
     /** Printf
      *
-     *  printf function with line number. 
+     *  printf function with line number.
      *  it can be used like
      *
      *  lcd.printf( 0, "Hello world!" );
@@ -100,7 +103,7 @@ public:
      * @param format following parameters are compatible to stdout's printf
      */
     void printf( int x, int y, char *format, ... );
-    
+
     /** Put character : "putc()"
      *
      * @param line line# (0 for upper, 1 for lower)
@@ -161,13 +164,13 @@ public:
      * @param flg bitpattern to choose ICON
      */
     void puticon( unsigned short flg );
-    
+
     /** Set number of charactors in a line
      *
      * @param ch number of charactors in a line
      */
     void setCharsInLine( char ch ) { charsInLine = ch; };
-    
+
 private:
     char    curs[2];
     void    init( char *init_massage );
@@ -206,21 +209,12 @@ private:
 #endif
         Comm_SetCGRAM                = 0x40
     } _commands;
-    
+
     typedef enum {
         MaxCharsInALine              = 0x10, //    buffer depth for one line (no scroll function used)
         COMMAND                      = 0x00,
         DATA                         = 0x40
     } _constants;
-}
-;
+};
 
 #endif
-
-
-
-
-
-
-
-

@@ -23,6 +23,9 @@
  *                                b. re-written for better usability
  *    revision 2.1  07-Apl-2015   a. add printf() with X and Y position
  *                                b. add setter for number of chars in a line (e.g. 8x2 LCD support)
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
  */
 
 #include    <stdarg.h>
@@ -64,7 +67,7 @@ void SB1602E::init( char *init_massage )
         Comm_ClearDisplay,
         Comm_EntryModeSet,
     };
-    
+
     i2c_addr    = 0x7C;
 
     ThisThread::sleep_for(40ms);    //    interval after hardware reset
@@ -259,9 +262,3 @@ void SB1602E::puticon(unsigned short flg)
         lcd_data(icon_buff[i]); // アイコンデータ
     }
 }
-
-
-
-
-
-
